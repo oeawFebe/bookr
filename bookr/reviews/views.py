@@ -68,6 +68,7 @@ def book_search(request):
 
 
     return render(request,'reviews/search-results.html',{'search_text':search_text,'books':books,'form':form})
+
 def publisher_edit(request,pk=None):
     if pk is not None:
         publisher=get_object_or_404(Publisher,pk=pk)
@@ -82,8 +83,12 @@ def publisher_edit(request,pk=None):
             else:
                 messages.success(request,f"Publisher {updated_publisher} was updated.")
             return redirect("publisher_edit",updated_publisher.pk)
-        return render(request,'form-example.html',{"method":request.method,"form":form})
+        return render(request,'reviews/instance-form.html',{"method":request.method,"form":form})
 
     else:
         form = PublisherForm(instance=publisher)
-        return render(request,'form-example.html',{"method":request.method,"form":form})
+        return render(request,'reviews/instance-form.html',{
+            "form":form,
+            "instance":publisher,
+            "model_type":request.method
+        })
