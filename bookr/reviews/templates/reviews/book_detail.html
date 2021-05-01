@@ -24,9 +24,13 @@
       <span class="text-info">Modified on: </span><span>{{review.date_edited}}</span><br>
       <span class="text-info">Rating: </span><span class="badge badge-secondary badge-pill">{{review.rating}}</span><br>
       <span class="text-info">Creator: </span><span>{{review.creator.username}}</span><br>
-
+      <a href="{% url 'review_edit' book.pk review.pk %}" class='btn btn-primary'>Edit Review</a>
     </li>
   {% endfor %}
 </ul>
 {% endif %}
+
+<a href="{% url 'review_create' book.pk %}" class='btn btn-primary'>Add Review</a>
+
+
 {% endblock %}

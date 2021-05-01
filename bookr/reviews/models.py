@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import auth
+from django import forms
 class Publisher(models.Model):
     """A company that publishes books."""
     name=models.CharField(max_length=50,
@@ -18,6 +19,11 @@ class Book(models.Model):
                           verbose_name="ISBN number of the book.")
     publisher=models.ForeignKey(Publisher,on_delete=models.CASCADE)
     contributors=models.ManyToManyField('Contributor',through="BookContributor")
+
+    cover=models.ImageField(upload_to='book_covers/',null=True,blank=True)
+    sample=models.FileField(upload_to='book_samples/',null=True,blank=True)
+
+
     def __str__(self):
         return f"{self.title} ({self.isbn})"
     def isbn13(self):

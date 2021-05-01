@@ -1,5 +1,5 @@
 from django import forms
-from .models import Publisher
+from .models import Publisher,Review,Book
 CHOICES=(('title','title1'),('contributor','contributor1'))
 class SearchForm(forms.Form):
     search=forms.CharField(min_length=3)
@@ -31,3 +31,15 @@ class PublisherForm(forms.ModelForm):
                 "placeholder":'the publicher name'
             })
         }
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model=Review
+        exclude=('date_edited',)
+        rating=forms.IntegerField(min_value=0,max_value=5)
+
+
+class BookMediaForm(forms.ModelForm):
+    class Meta:
+        model=Book
+        fields=('cover','sample',)
