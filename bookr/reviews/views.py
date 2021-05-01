@@ -135,7 +135,6 @@ def book_media(request,pk):
         if form.is_valid():
             book=form.save(commit=False)
             cover=form.cleaned_data.get('cover')
-            print(cover)
             if cover:
                 image=Image.open(cover)
                 image.thumbnail((300,300))
