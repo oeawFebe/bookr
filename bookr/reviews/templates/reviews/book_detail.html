@@ -21,7 +21,9 @@
 
 {% if not reviews %}
   <hr>
+{% if user.is_authenticated %}
   <h3>Be the first one to write a review.</h3>
+{% endif %}
 {% else %}
   <span class="text-info">Overall Rating: </span><span class="badge badge-primary badge-pill">{{book_rating}}</span>
   <br>
@@ -35,14 +37,15 @@
       <span class="text-info">Modified on: </span><span>{{review.date_edited}}</span><br>
       <span class="text-info">Rating: </span><span class="badge badge-secondary badge-pill">{{review.rating}}</span><br>
       <span class="text-info">Creator: </span><span>{{review.creator.username}}</span><br>
-      <a href="{% url 'review_edit' book.pk review.pk %}" class='btn btn-primary'>Edit Review</a>
+      {% if user.is_authenticated or user.id == review.creator_id %}<a href="{% url 'review_edit' book.pk review.pk %}" class='btn btn-primary'>Edit Review</a>{% endif %}
     </li>
   {% endfor %}
 </ul>
 {% endif %}
 
+{% if user.is_authenticated %}
 <a href="{% url 'review_create' book.pk %}" class='btn btn-primary'>Add Review</a>
 <a class="btn btn-primary" href="{% url 'book_media' book.pk %}">Media</a>
-
+{% endif %}
 
 {% endblock %}

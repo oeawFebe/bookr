@@ -1,6 +1,6 @@
 from django import forms
 from .models import Publisher,Review,Book
-CHOICES=(('title','title1'),('contributor','contributor1'))
+CHOICES=(('title','title'),('contributor','contributor'))
 class SearchForm(forms.Form):
     search=forms.CharField(min_length=3)
     search_in=forms.ChoiceField(choices=CHOICES,
