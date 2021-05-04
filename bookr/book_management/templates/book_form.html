@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Book record insertion</title>
 </head>
 <body>
-$END$
+<form method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="Save record" />
+</form>
 </body>
 </html>

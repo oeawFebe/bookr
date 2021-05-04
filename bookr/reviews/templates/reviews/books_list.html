@@ -1,7 +1,7 @@
 {% extends 'reviews/base.html' %}
 
 {% block content %}
-<ul class="list-group">
+<li class="list-group">
   {% for item in book_list %}
     <li class="list-group-item">
       <span class="text-info">Title: </span><span>{{item.book.title}}</span>
@@ -20,7 +20,8 @@
       {% endif %}
       <a class="btn btn-primary btn-sm active " role="button" aria-pressed="true" href="/books/{{item.book.id}}/">Reviews</a>
     </li>
-
   {% endfor %}
 </ul>
+
+
 {% endblock %}
