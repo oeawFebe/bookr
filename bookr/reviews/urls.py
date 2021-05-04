@@ -18,6 +18,7 @@ urlpatterns=[
     path('books/<int:pk>/media/',views.book_media,name='book_media'),
     path('api/first_api_view/',api_views.first_api_view),
     path('api/all_books/', api_views.AllBooks.as_view(),name='all_books'),
+    path('api/contributors/',api_views.ContributorView.as_view(),name='contributors'),
 
 ]
 if settings.DEBUG:
